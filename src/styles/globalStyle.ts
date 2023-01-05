@@ -1,12 +1,14 @@
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
 
+import SUITVariable from '@/assets/fonts/SUIT-Variable.ttf';
+
 const GlobalStyle = createGlobalStyle`
   ${normalize}
 
   @font-face {
   font-family: 'SUIT Variable';
-  src: url('../assets/fonts/SUIT-Variable.ttf') format('truetype');
+  src: url(${SUITVariable}) format('truetype');
 }
 
   *, *::before, *::after {
