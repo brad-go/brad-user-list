@@ -4,14 +4,19 @@ import { normalize } from 'styled-normalize';
 const GlobalStyle = createGlobalStyle`
   ${normalize}
 
-  
+  @font-face {
+  font-family: 'SUIT Variable';
+  src: url('../assets/fonts/SUIT-Variable.ttf') format('truetype');
+}
 
   *, *::before, *::after {
     box-sizing: border-box;
+    font-family: SUIT Variable, -apple-system, 'Segoe UI', Roboto, 'Open Sans', sans-serif;
     color: ${({ theme }) => theme.colors.black};
   }
 
   html, body {
+    font-family: SUIT Variable, -apple-system, 'Segoe UI', Roboto, 'Open Sans', sans-serif;
     color: ${({ theme }) => theme.colors.black};
   }
 
