@@ -44,6 +44,7 @@ const Container = styled.header`
   height: 70px;
   padding: 0 40px;
   background-color: ${({ theme }) => theme.colors.purple_60};
+  z-index: 1000;
 
   @media ${({ theme }) => theme.breakPoints.mobile} {
     flex-direction: column;
