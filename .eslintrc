@@ -49,21 +49,11 @@
           "type",
           "builtin",
           "external",
-          "internal",
+          ["internal", "unknown"],
           ["parent", "sibling", "index"]
         ],
-        "alphabetize": {
-          "order": "asc",
-          "caseInsensitive": true
-        },
-        "pathGroups": [
-          {
-            "pattern": "@/**/**",
-            "group": "parent",
-            "position": "before"
-          }
-        ],
-        "newlines-between": "always"
+        "newlines-between": "always",
+        "pathGroupsExcludedImportTypes": ["type"]
       }
     ],
     "import/prefer-default-export": "off",
