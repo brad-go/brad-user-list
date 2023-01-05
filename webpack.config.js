@@ -29,6 +29,17 @@ const commonConfig = {
         ],
         exclude: /node_modules/,
       },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              svgo: false,
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
