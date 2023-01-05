@@ -123,5 +123,5 @@
       }
     }
   ],
-  "ignorePatterns": ["*.config.js", "jest.setup.js"]
+  "ignorePatterns": ["*.config.js", "jest.setup.js", "server"]
 }
