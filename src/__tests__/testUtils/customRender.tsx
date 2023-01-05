@@ -1,8 +1,8 @@
-import type { RenderOptions } from '@testing-library/react';
 import type { FC, ReactElement } from 'react';
+import type { RenderOptions } from '@testing-library/react';
 
-import { render } from '@testing-library/react';
 import React from 'react';
+import { render } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
 
 import GlobalStyle from '@/styles/globalStyle';
