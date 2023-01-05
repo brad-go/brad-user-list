@@ -2,9 +2,7 @@
   "root": true,
   "env": {
     "browser": true,
-    "es2021": true,
-    "node": true,
-    "jest": true
+    "es2021": true
   },
   "settings": {
     "react": {
@@ -80,24 +78,6 @@
     "@typescript-eslint/no-use-before-define": "off"
   },
   "overrides": [
-    {
-      "files": [
-        "**/__tests__/**/*.[jt]s?(x)",
-        "**/?(*.)+(spec|test).[jt]s?(x)"
-      ],
-      "env": {
-        "jest/globals": true
-      },
-      "plugins": ["jest", "jest-dom", "testing-library"],
-      "extends": [
-        "plugin:jest/recommended",
-        "plugin:jest-dom/recommended",
-        "plugin:testing-library/react"
-      ],
-      "rules": {
-        "no-underscore-dangle": "off"
-      }
-    },
     {
       "files": ["*.stories.tsx"],
       "extends": ["plugin:storybook/recommended"],
