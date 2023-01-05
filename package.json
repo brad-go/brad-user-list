@@ -6,16 +6,19 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack serve --progress --mode development",
+    "start:dev": "concurrently \"yarn start\" \"yarn json\"",
     "test": "jest --watch",
     "build": "webpack --progress --mode production",
     "lint": "eslint './src/**/*.{ts,tsx,js,jsx}'",
     "lint:fix": "eslint --fix './src/**/*.{ts,tsx,js,jsx}'",
     "prettier": "prettier --write './src/**/*.{ts,tsx}'",
+    "prepare": "husky install",
+    "json": "json-server --watch server/db.json --port 9000",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "prepare": "husky install"
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "json-server": "^0.17.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.6.1",
@@ -51,6 +54,7 @@
     "babel-jest": "^29.3.1",
     "babel-loader": "^9.1.0",
     "babel-plugin-styled-components": "^2.0.7",
+    "concurrently": "^7.6.0",
     "dotenv-webpack": "^8.0.1",
     "eslint": "^8.31.0",
     "eslint-config-airbnb": "^19.0.4",
