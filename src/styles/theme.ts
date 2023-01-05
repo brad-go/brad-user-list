@@ -24,13 +24,17 @@ const fontWeights = {
   light: 300,
   normal: 400,
   medium: 500,
+  semiBold: 600,
+  bold: 700,
 };
 
-const WINDOW_SIZE = 650;
+const windowSize = {
+  mobile: 650,
+};
 
 const breakPoints = {
-  mobile: `screen and (max-width: ${WINDOW_SIZE}px)`,
-  pc: `screen and (min-width: ${WINDOW_SIZE + 1}px)`,
+  mobile: `screen and (max-width: ${windowSize.mobile}px)`,
+  pc: `screen and (min-width: ${windowSize.mobile + 1}px)`,
 };
 
 export type Color = typeof colors;
