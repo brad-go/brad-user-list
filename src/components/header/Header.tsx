@@ -1,11 +1,11 @@
 import { NavLink as Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { ReactComponent as Logo } from '@/assets/svgs/logo.svg';
-import { ReactComponent as Cellular } from '@/assets/svgs/cellular.svg';
-import { ReactComponent as Wifi } from '@/assets/svgs/wifi.svg';
-import { ReactComponent as Battery } from '@/assets/svgs/battery.svg';
 import { Clock } from '@/components/clock';
+import Logo from '@/assets/svgs/logo.svg';
+import Cellular from '@/assets/svgs/cellular.svg';
+import Wifi from '@/assets/svgs/wifi.svg';
+import Battery from '@/assets/svgs/battery.svg';
 
 const Header = () => {
   return (
@@ -44,6 +44,7 @@ const Container = styled.header`
   height: 70px;
   padding: 0 40px;
   background-color: ${({ theme }) => theme.colors.purple_60};
+  z-index: 1000;
 
   @media ${({ theme }) => theme.breakPoints.mobile} {
     flex-direction: column;
