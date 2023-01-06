@@ -7,14 +7,14 @@ import { getUserList } from './usersActions';
 
 interface UsersState {
   users: User[];
-  checkedUsers: User[];
+  currentUsers: User[];
   isLoading: boolean;
   error: SerializedError | null;
 }
 
 const initialState: UsersState = {
   users: [],
-  checkedUsers: [],
+  currentUsers: [],
   isLoading: false,
   error: null,
 };
@@ -23,18 +23,21 @@ const usersSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
+    setUsers(state, action: PayloadAction<User[]>) {
+      state.currentUsers = action.payload;
+    },
     checkUser(state, action: PayloadAction<{ id: number }>) {
-      const index = state.checkedUsers.findIndex(
+      const index = state.currentUsers.findIndex(
         ({ id }) => id === action.payload.id,
       );
 
       if (index !== -1) {
-        const current = state.checkedUsers[index].checked;
-        state.checkedUsers[index].checked = !current;
+        const current = state.currentUsers[index].checked;
+        state.currentUsers[index].checked = !current;
       }
     },
     resetUsers(state) {
-      state.checkedUsers = state.users;
+      state.currentUsers = state.users;
     },
   },
   extraReducers: (builder) => {
@@ -43,7 +46,7 @@ const usersSlice = createSlice({
     });
     builder.addCase(getUserList.fulfilled, (state, action) => {
       state.users = action.payload;
-      state.checkedUsers = action.payload;
+      state.currentUsers = action.payload;
       state.isLoading = false;
     });
     builder.addCase(getUserList.rejected, (state, action) => {
@@ -55,6 +58,6 @@ const usersSlice = createSlice({
 
 const { actions, reducer } = usersSlice;
 
-export const { checkUser, resetUsers } = actions;
+export const { checkUser, setUsers, resetUsers } = actions;
 
 export default reducer;
