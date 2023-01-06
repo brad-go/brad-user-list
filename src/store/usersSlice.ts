@@ -23,19 +23,15 @@ const usersSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
-    checkUser(state, action: PayloadAction<User>) {
+    checkUser(state, action: PayloadAction<{ id: number }>) {
       const index = state.checkedUsers.findIndex(
         ({ id }) => id === action.payload.id,
       );
 
-      if (index === -1) {
-        return;
+      if (index !== -1) {
+        const current = state.checkedUsers[index].checked;
+        state.checkedUsers[index].checked = !current;
       }
-
-      state.checkedUsers[index] = {
-        ...state.users[index],
-        checked: action.payload.checked,
-      };
     },
     resetUsers(state) {
       state.checkedUsers = state.users;
