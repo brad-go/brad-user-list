@@ -1,3 +1,5 @@
+import type { Order } from '@/types';
+
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -5,24 +7,30 @@ import { useToggle } from '@/hooks';
 import Bracket from '@/assets/svgs/bracket.svg';
 
 interface Option {
+  order: Order;
   name: string;
-  id: string;
 }
 
 const options: Option[] = [
-  { id: 'ascending', name: '오름차 순' },
-  { id: 'descending', name: '내림차 순' },
+  { order: 'ascending', name: '오름차 순' },
+  { order: 'descending', name: '내림차 순' },
 ];
 
-const Selectbox = () => {
+interface SelectboxProps {
+  handleSortUsers: (order: Order) => void;
+}
+
+const Selectbox = ({ handleSortUsers }: SelectboxProps) => {
   const [option, setOption] = useState(options[0]);
   const [isOpen, toggleSelect] = useToggle();
 
   const handleClickOption = (e: React.MouseEvent<HTMLLIElement>) => {
     const { id, innerText } = e.target as HTMLElement;
+    const order = id as Order;
 
-    setOption({ id, name: innerText });
+    setOption({ order, name: innerText });
     toggleSelect();
+    handleSortUsers(order);
   };
 
   return (
@@ -32,10 +40,10 @@ const Selectbox = () => {
         <Bracket />
       </Select>
       <OptionList isOpen={isOpen}>
-        {options.map(({ id, name }) => (
+        {options.map(({ order, name }) => (
           <OptionItem
-            id={id}
-            key={id}
+            id={order}
+            key={order}
             isSelected={name === option.name}
             onClick={handleClickOption}
           >
