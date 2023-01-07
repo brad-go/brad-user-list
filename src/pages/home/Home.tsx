@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import React, { useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import Arrow from '@/assets/svgs/arrow.svg';
 import { List } from '@/components';
@@ -8,6 +9,7 @@ import { updateUserList } from '@/store/usersActions';
 import { checkUser, selectUser } from '@/store/usersSlice';
 
 const Home = () => {
+  const location = useLocation();
   const dispatch = useAppDispatch();
   const { users, checkedUsers } = useAppSelector((state) => state);
 
@@ -24,6 +26,10 @@ const Home = () => {
   const handleClickButton = useCallback(() => {
     dispatch(updateUserList(users));
   }, [dispatch, users]);
+
+  useEffect(() => {
+    console.log(location);
+  }, [location]);
 
   return (
     <Container>
@@ -58,14 +64,15 @@ const Container = styled.div`
 `;
 
 const ArrowBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   & > svg {
     width: 50px;
   }
 
   @media ${({ theme }) => theme.breakPoints.mobile} {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
     height: 20px;
     flex-shrink: 0;
