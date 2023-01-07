@@ -60,9 +60,8 @@ const List = ({
       </ListHeader>
       <ListBody ref={listRef} withButton={withButton}>
         {users.map(({ id, name, date, checked }, index) => (
-          <>
+          <React.Fragment key={id}>
             <ListItem
-              key={id}
               id={id}
               name={name}
               date={date}
@@ -72,7 +71,7 @@ const List = ({
               onClick={onUserClick}
             />
             {index !== users.length - 1 && <DivisionLine />}
-          </>
+          </React.Fragment>
         ))}
       </ListBody>
       {withButton && (
