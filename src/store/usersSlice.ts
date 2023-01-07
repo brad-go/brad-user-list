@@ -44,16 +44,15 @@ const usersSlice = createSlice({
         return;
       }
 
-      const user = state.users[index];
-      user.checked = !user.checked;
+      const currentUser = state.users[index];
+      currentUser.checked = !currentUser.checked;
 
-      if (user.checked) {
-        state.checkedUsers = [
-          user,
-          ...state.checkedUsers.filter((u) => u.id !== user.id),
-        ];
+      if (currentUser.checked) {
+        state.checkedUsers = state.users.filter((user) => user.checked);
       } else {
-        state.checkedUsers = state.checkedUsers.filter((u) => u.id !== user.id);
+        state.checkedUsers = state.checkedUsers.filter(
+          (user) => user.id !== currentUser.id,
+        );
       }
     },
     selectUser(state, action: PayloadAction<Pick<User, 'id'>>) {
