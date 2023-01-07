@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import { getUserList } from '@/store/usersActions';
+import { checkUser, selectUser } from '@/store/usersSlice';
 
 import List from './List';
 
@@ -16,11 +17,18 @@ const ListTemplate: ComponentStory<typeof List> = ({ ...args }) => {
   const dispatch = useAppDispatch();
   const users = useAppSelector((state) => state.users);
 
+  const handleClickUser = (e: React.MouseEvent) => {
+    const clickedUserId = Number((e.currentTarget as HTMLElement).id);
+
+    dispatch(checkUser({ id: clickedUserId }));
+    dispatch(selectUser({ id: clickedUserId }));
+  };
+
   useEffect(() => {
     dispatch(getUserList());
   }, [dispatch]);
 
-  return <List {...args} users={users} />;
+  return <List {...args} users={users} onUserClick={handleClickUser} />;
 };
 
 export const ListDefault = ListTemplate.bind({});

@@ -4,8 +4,7 @@ import styled from 'styled-components';
 import React, { useEffect, useRef, useCallback } from 'react';
 
 import { Selectbox } from '@/components';
-import { useAppSelector, useAppDispatch } from '@/hooks';
-import { checkUser, selectUser } from '@/store/usersSlice';
+import { useAppSelector } from '@/hooks';
 
 import ListItem from './ListItem';
 
@@ -15,6 +14,7 @@ interface ListProps {
   withButton?: boolean;
   withCheckbox?: boolean;
   withProfile?: boolean;
+  onUserClick: React.MouseEventHandler<HTMLElement>;
   onButtonClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
@@ -24,18 +24,11 @@ const List = ({
   withButton,
   withCheckbox,
   withProfile,
+  onUserClick,
   onButtonClick,
 }: ListProps) => {
-  const dispatch = useAppDispatch();
   const { checkedUsers, selectedUser } = useAppSelector((state) => state);
   const listRef = useRef<HTMLUListElement>(null);
-
-  const handleClickUser = (e: React.MouseEvent) => {
-    const clickedUserId = Number((e.currentTarget as HTMLElement).id);
-
-    dispatch(checkUser({ id: clickedUserId }));
-    dispatch(selectUser({ id: clickedUserId }));
-  };
 
   const scrollToElement = useCallback(() => {
     if (!withButton || !listRef.current || !selectedUser) {
@@ -76,7 +69,7 @@ const List = ({
               checked={checked}
               selected={selectedUser && id === selectedUser.id}
               withCheckbox={withCheckbox}
-              onClick={handleClickUser}
+              onClick={onUserClick}
             />
             {index !== users.length - 1 && <DivisionLine />}
           </>

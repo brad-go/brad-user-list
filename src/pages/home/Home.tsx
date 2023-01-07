@@ -1,22 +1,33 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import Arrow from '@/assets/svgs/arrow.svg';
 import { List } from '@/components';
 import { useAppSelector, useAppDispatch } from '@/hooks';
 import { updateUserList } from '@/store/usersActions';
+import { checkUser, selectUser } from '@/store/usersSlice';
 
 const Home = () => {
   const dispatch = useAppDispatch();
   const { users, checkedUsers } = useAppSelector((state) => state);
 
-  const handleClickButton = () => {
+  const handleClickUser = useCallback(
+    (e: React.MouseEvent) => {
+      const clickedUserId = Number((e.currentTarget as HTMLElement).id);
+
+      dispatch(checkUser({ id: clickedUserId }));
+      dispatch(selectUser({ id: clickedUserId }));
+    },
+    [dispatch],
+  );
+
+  const handleClickButton = useCallback(() => {
     dispatch(updateUserList(users));
-  };
+  }, [dispatch, users]);
 
   return (
     <Container>
-      <List users={users} withCheckbox />
+      <List users={users} withCheckbox onUserClick={handleClickUser} />
       <ArrowBox>
         <Arrow />
       </ArrowBox>
@@ -24,6 +35,7 @@ const Home = () => {
         users={checkedUsers}
         withButton
         isCheckedUsers
+        onUserClick={handleClickUser}
         onButtonClick={handleClickButton}
       />
     </Container>
