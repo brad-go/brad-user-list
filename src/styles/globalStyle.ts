@@ -1,22 +1,24 @@
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
 
+import SUITVariable from '@/assets/fonts/SUIT-Variable.ttf';
+
 const GlobalStyle = createGlobalStyle`
   ${normalize}
 
   @font-face {
     font-family: 'SUIT Variable';
-    src: url('../assets/fonts/SUIT-Variable.ttf') format('truetype');
+    src: url(${SUITVariable}) format('truetype');
   }
 
   *, *::before, *::after {
     box-sizing: border-box;
-    font-family: SUIT Variable, -apple-system, 'Segoe UI', Roboto, 'Open Sans', sans-serif;
+    font-family: 'SUIT Variable', -apple-system, sans-serif;
     color: ${({ theme }) => theme.colors.black};
   }
 
   html, body {
-    font-family: SUIT Variable, -apple-system, 'Segoe UI', Roboto, 'Open Sans', sans-serif;
+    font-family: 'SUIT Variable', -apple-system, sans-serif;
     color: ${({ theme }) => theme.colors.black};
   }
 
