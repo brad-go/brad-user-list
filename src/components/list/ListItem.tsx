@@ -33,7 +33,7 @@ const ListItem = ({
       onClick={onClick}
     >
       <span>{name}</span>
-      <span>{date}</span>
+      <span>{date.replaceAll('-', '.')}</span>
       <CheckboxContainer>
         {withCheckbox && <Checkbox checked={checked} />}
       </CheckboxContainer>
