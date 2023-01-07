@@ -3,7 +3,7 @@ import type { PayloadAction, SerializedError } from '@reduxjs/toolkit';
 
 import { createSlice } from '@reduxjs/toolkit';
 
-import { orderByDate } from '@/utils/users';
+import { orderUsersByDate } from '@/utils/users';
 
 import { getUserList } from './usersActions';
 
@@ -66,10 +66,13 @@ const usersSlice = createSlice({
     orderUsers(state, action: PayloadAction<OrderOption>) {
       if (action.payload.isCheckedUsers) {
         const checkedUsers = [...state.checkedUsers];
-        state.checkedUsers = orderByDate(checkedUsers, action.payload.order);
+        state.checkedUsers = orderUsersByDate(
+          checkedUsers,
+          action.payload.order,
+        );
       } else {
         const users = [...state.users];
-        state.users = orderByDate(users, action.payload.order);
+        state.users = orderUsersByDate(users, action.payload.order);
       }
     },
     resetUsers(state) {

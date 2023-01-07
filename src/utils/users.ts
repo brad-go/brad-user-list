@@ -1,6 +1,6 @@
 import type { User, Order } from '@/types';
 
-export const sortUsers = (users: User[], order: Order) => {
+export const orderUsersByDate = (users: User[], order: Order) => {
   const sortedUsers = [...users];
 
   return sortedUsers.sort((a, b): number => {
