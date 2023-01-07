@@ -1,12 +1,9 @@
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
-import type { Order } from '@/types';
 
 import { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import { getUserList } from '@/store/usersActions';
-import { setUsers, checkUser, selectUser } from '@/store/usersSlice';
-import { sortUsers } from '@/utils/users';
 
 import List from './List';
 
@@ -19,31 +16,11 @@ const ListTemplate: ComponentStory<typeof List> = ({ ...args }) => {
   const dispatch = useAppDispatch();
   const users = useAppSelector((state) => state.users);
 
-  const handleClickUser = (e: React.MouseEvent) => {
-    const target = e.currentTarget as HTMLElement;
-    const id = Number(target.id);
-
-    dispatch(checkUser({ id }));
-    dispatch(selectUser(users[id - 1]));
-  };
-
-  const handleSortUsers = (order: Order) => {
-    const sorted = sortUsers(users, order);
-    dispatch(setUsers(sorted));
-  };
-
   useEffect(() => {
     dispatch(getUserList());
   }, [dispatch]);
 
-  return (
-    <List
-      {...args}
-      users={users}
-      onUserClick={handleClickUser}
-      handleSortUsers={handleSortUsers}
-    />
-  );
+  return <List {...args} users={users} />;
 };
 
 export const ListDefault = ListTemplate.bind({});

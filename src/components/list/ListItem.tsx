@@ -34,12 +34,15 @@ const ListItem = ({
     >
       <span>{name}</span>
       <span>{date}</span>
-      {withCheckbox && <Checkbox checked={checked} />}
+      <CheckboxContainer>
+        {withCheckbox && <Checkbox checked={checked} />}
+      </CheckboxContainer>
     </Item>
   );
 };
 
 const Item = styled.li<ListItemState>`
+  position: relative;
   display: grid;
   grid-template-columns: 110px 1fr;
   align-items: center;
@@ -47,7 +50,7 @@ const Item = styled.li<ListItemState>`
   padding: 10px 20px;
   font-size: ${({ theme }) => theme.fontSizes.medium};
   font-weight: ${({ theme }) => theme.fontWeights.light};
-  line-height: 1.27;
+  line-height: 1.267;
   transition: background-color 0.2s ease-in-out;
   cursor: pointer;
 
@@ -56,11 +59,6 @@ const Item = styled.li<ListItemState>`
       selected ? theme.colors.purple : theme.colors.black};
     font-size: ${({ theme }) => theme.fontSizes.medium};
     font-weight: ${({ theme }) => theme.fontWeights.light};
-  }
-
-  @media ${({ theme }) => theme.breakPoints.mobile} {
-    grid-template-columns: ${({ withCheckbox }) =>
-      withCheckbox ? '124px 141px 1fr' : '124px 1fr'};
   }
 
   ${({ theme, withCheckbox, checked, selected }) =>
@@ -76,6 +74,20 @@ const Item = styled.li<ListItemState>`
             ? theme.colors.purple_30
             : theme.colors.white};
         `}
+
+  @media ${({ theme }) => theme.breakPoints.mobile} {
+    grid-template-columns: 2fr 3fr;
+  }
+`;
+
+const CheckboxContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  @media ${({ theme }) => theme.breakPoints.mobile} {
+    position: absolute;
+    right: 54px;
+  }
 `;
 
 export default ListItem;
