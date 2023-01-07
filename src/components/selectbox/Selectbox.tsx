@@ -1,9 +1,9 @@
 import type { Order } from '@/types';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 
-import { useToggle } from '@/hooks';
+import { useDrawer } from '@/hooks';
 import Bracket from '@/assets/svgs/bracket.svg';
 
 interface Option {
@@ -21,8 +21,9 @@ interface SelectboxProps {
 }
 
 const Selectbox = ({ handleSortUsers }: SelectboxProps) => {
+  const drawerRef = useRef(null);
   const [option, setOption] = useState(options[0]);
-  const [isOpen, toggleSelectbox] = useToggle();
+  const [isOpen, toggleSelectbox] = useDrawer(drawerRef);
 
   const handleClickOption = (e: React.MouseEvent<HTMLLIElement>) => {
     const { id, innerText } = e.currentTarget as HTMLElement;
@@ -35,7 +36,7 @@ const Selectbox = ({ handleSortUsers }: SelectboxProps) => {
 
   return (
     <>
-      <Select onClick={toggleSelectbox}>
+      <Select ref={drawerRef} onClick={toggleSelectbox}>
         <span>{option.name}</span>
         <Bracket />
       </Select>
@@ -51,7 +52,6 @@ const Selectbox = ({ handleSortUsers }: SelectboxProps) => {
           </OptionItem>
         ))}
       </OptionList>
-      <Backdrop onClick={isOpen ? toggleSelectbox : undefined} />
     </>
   );
 };
@@ -122,15 +122,6 @@ const OptionItem = styled.li<{ isSelected: boolean }>`
   &:last-of-type {
     padding: 4px 0 5px 0;
   }
-`;
-
-const Backdrop = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0;
 `;
 
 export default Selectbox;
