@@ -1,31 +1,21 @@
-import type { InputHTMLAttributes } from 'react';
-
 import styled, { css } from 'styled-components';
 
 import Check from '@/assets/svgs/check.svg';
 
-interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
-  id: string;
+interface CheckboxProps {
   checked: boolean;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-const Checkbox = ({ id, checked, onChange, ...rest }: CheckboxProps) => {
+const Checkbox = ({ checked }: CheckboxProps) => {
   return (
-    <Label htmlFor={id}>
-      <Input
-        id={id}
-        type="checkbox"
-        checked={checked}
-        onChange={onChange}
-        {...rest}
-      />
+    <Container>
+      <Box checked={checked} />
       <Check />
-    </Label>
+    </Container>
   );
 };
 
-const Label = styled.label`
+const Container = styled.div`
   position: relative;
   display: inline-flex;
   cursor: pointer;
@@ -37,7 +27,7 @@ const Label = styled.label`
   }
 `;
 
-const Input = styled.input<{ checked: boolean }>`
+const Box = styled.div<{ checked: boolean }>`
   -webkit-appearance: none;
   appearance: none;
   width: 12px;

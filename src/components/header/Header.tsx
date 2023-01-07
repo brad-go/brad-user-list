@@ -18,14 +18,16 @@ const Header = () => {
           <Battery />
         </Status>
       </StatusBar>
-      <Logo />
+      <Link to="/">
+        <Logo />
+      </Link>
       <Nav>
         <NavList>
           <NavItem>
-            <NavLink to="/">Page 01</NavLink>
+            <NavLink to="/">PAGE 01</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to="/user">Page 02</NavLink>
+            <NavLink to="/user">PAGE 02</NavLink>
           </NavItem>
         </NavList>
       </Nav>

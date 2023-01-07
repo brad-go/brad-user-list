@@ -7,18 +7,18 @@ const GlobalStyle = createGlobalStyle`
   ${normalize}
 
   @font-face {
-  font-family: 'SUIT Variable';
-  src: url(${SUITVariable}) format('truetype');
-}
+    font-family: 'SUIT Variable';
+    src: url(${SUITVariable}) format('truetype');
+  }
 
   *, *::before, *::after {
     box-sizing: border-box;
-    font-family: SUIT Variable, -apple-system, 'Segoe UI', Roboto, 'Open Sans', sans-serif;
+    font-family: 'SUIT Variable', -apple-system, sans-serif;
     color: ${({ theme }) => theme.colors.black};
   }
 
   html, body {
-    font-family: SUIT Variable, -apple-system, 'Segoe UI', Roboto, 'Open Sans', sans-serif;
+    font-family: 'SUIT Variable', -apple-system, sans-serif;
     color: ${({ theme }) => theme.colors.black};
   }
 

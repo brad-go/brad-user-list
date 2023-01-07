@@ -1,41 +1,53 @@
-import React, { useState } from 'react';
+import type { Order } from '@/types';
+
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 
-import { useToggle } from '@/hooks';
 import Bracket from '@/assets/svgs/bracket.svg';
+import { useAppDispatch, useDrawer } from '@/hooks';
+import { orderUsers } from '@/store/usersSlice';
 
 interface Option {
+  order: Order;
   name: string;
-  id: string;
 }
 
 const options: Option[] = [
-  { id: 'ascending', name: '오름차 순' },
-  { id: 'descending', name: '내림차 순' },
+  { order: 'ascending', name: '오름차 순' },
+  { order: 'descending', name: '내림차 순' },
 ];
 
-const Selectbox = () => {
+interface SelectboxProps {
+  isCheckedUsers: boolean;
+}
+
+const Selectbox = ({ isCheckedUsers }: SelectboxProps) => {
+  const dispatch = useAppDispatch();
+
+  const drawerRef = useRef(null);
   const [option, setOption] = useState(options[0]);
-  const [isOpen, toggleSelect] = useToggle();
+  const [isOpen, toggleSelectbox] = useDrawer(drawerRef);
 
   const handleClickOption = (e: React.MouseEvent<HTMLLIElement>) => {
-    const { id, innerText } = e.target as HTMLElement;
+    const { id, innerText } = e.currentTarget as HTMLElement;
+    const order = id as Order;
 
-    setOption({ id, name: innerText });
-    toggleSelect();
+    setOption({ order, name: innerText });
+    toggleSelectbox();
+    dispatch(orderUsers({ order, isCheckedUsers }));
   };
 
   return (
-    <>
-      <Select onClick={toggleSelect}>
+    <div ref={drawerRef}>
+      <Select onClick={toggleSelectbox}>
         <span>{option.name}</span>
         <Bracket />
       </Select>
       <OptionList isOpen={isOpen}>
-        {options.map(({ id, name }) => (
+        {options.map(({ order, name }) => (
           <OptionItem
-            id={id}
-            key={id}
+            id={order}
+            key={order}
             isSelected={name === option.name}
             onClick={handleClickOption}
           >
@@ -43,8 +55,7 @@ const Selectbox = () => {
           </OptionItem>
         ))}
       </OptionList>
-      <Backdrop onClick={isOpen ? toggleSelect : undefined} />
-    </>
+    </div>
   );
 };
 
@@ -77,7 +88,7 @@ const OptionList = styled.ul<{ isOpen: boolean }>`
   top: 44px;
   left: 20px;
   width: 82px;
-  max-height: ${({ isOpen }) => (isOpen ? 60 : 0)}px;
+  max-height: ${({ isOpen }) => (isOpen ? 200 : 0)}px;
   margin: 0;
   border-radius: 0px 0px 5px 5px;
   background-color: ${({ theme }) => theme.colors.white};
@@ -114,15 +125,6 @@ const OptionItem = styled.li<{ isSelected: boolean }>`
   &:last-of-type {
     padding: 4px 0 5px 0;
   }
-`;
-
-const Backdrop = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 10;
 `;
 
 export default Selectbox;

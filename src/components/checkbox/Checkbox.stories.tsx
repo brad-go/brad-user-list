@@ -1,7 +1,5 @@
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { useToggle } from '@/hooks';
-
 import Checkbox from './Checkbox';
 
 export default {
@@ -17,9 +15,7 @@ export default {
 } as ComponentMeta<typeof Checkbox>;
 
 const Template: ComponentStory<typeof Checkbox> = ({ ...args }) => {
-  const [checked, handleChange] = useToggle(args.checked || false);
-
-  return <Checkbox {...args} checked={checked} onChange={handleChange} />;
+  return <Checkbox {...args} />;
 };
 
 export const Default = Template.bind({});
