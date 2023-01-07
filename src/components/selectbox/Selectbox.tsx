@@ -3,8 +3,9 @@ import type { Order } from '@/types';
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 
-import { useDrawer } from '@/hooks';
 import Bracket from '@/assets/svgs/bracket.svg';
+import { useAppDispatch, useDrawer } from '@/hooks';
+import { orderUsers } from '@/store/usersSlice';
 
 interface Option {
   order: Order;
@@ -17,10 +18,12 @@ const options: Option[] = [
 ];
 
 interface SelectboxProps {
-  handleSortUsers: (order: Order) => void;
+  isCheckedUsers: boolean;
 }
 
-const Selectbox = ({ handleSortUsers }: SelectboxProps) => {
+const Selectbox = ({ isCheckedUsers }: SelectboxProps) => {
+  const dispatch = useAppDispatch();
+
   const drawerRef = useRef(null);
   const [option, setOption] = useState(options[0]);
   const [isOpen, toggleSelectbox] = useDrawer(drawerRef);
@@ -31,12 +34,12 @@ const Selectbox = ({ handleSortUsers }: SelectboxProps) => {
 
     setOption({ order, name: innerText });
     toggleSelectbox();
-    handleSortUsers(order);
+    dispatch(orderUsers({ order, isCheckedUsers }));
   };
 
   return (
-    <>
-      <Select ref={drawerRef} onClick={toggleSelectbox}>
+    <div ref={drawerRef}>
+      <Select onClick={toggleSelectbox}>
         <span>{option.name}</span>
         <Bracket />
       </Select>
@@ -52,7 +55,7 @@ const Selectbox = ({ handleSortUsers }: SelectboxProps) => {
           </OptionItem>
         ))}
       </OptionList>
-    </>
+    </div>
   );
 };
 
@@ -85,7 +88,7 @@ const OptionList = styled.ul<{ isOpen: boolean }>`
   top: 44px;
   left: 20px;
   width: 82px;
-  max-height: ${({ isOpen }) => (isOpen ? 60 : 0)}px;
+  max-height: ${({ isOpen }) => (isOpen ? 200 : 0)}px;
   margin: 0;
   border-radius: 0px 0px 5px 5px;
   background-color: ${({ theme }) => theme.colors.white};
