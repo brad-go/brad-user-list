@@ -21,8 +21,10 @@ export default {
   ],
 } as ComponentMeta<typeof Selectbox>;
 
-const Template: ComponentStory<typeof Selectbox> = ({ ...args }) => {
-  return <Selectbox {...args} />;
+const Template: ComponentStory<typeof Selectbox> = () => {
+  const handleSortUsers = () => {};
+
+  return <Selectbox handleSortUsers={handleSortUsers} />;
 };
 
 export const Desktop = Template.bind({});
