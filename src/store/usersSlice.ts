@@ -6,15 +6,17 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getUserList } from './usersActions';
 
 interface UsersState {
+  initialUsers: User[];
   users: User[];
-  currentUsers: User[];
+  selectedUser: User | undefined;
   isLoading: boolean;
   error: SerializedError | null;
 }
 
 const initialState: UsersState = {
+  initialUsers: [],
   users: [],
-  currentUsers: [],
+  selectedUser: undefined,
   isLoading: false,
   error: null,
 };
@@ -24,20 +26,21 @@ const usersSlice = createSlice({
   initialState,
   reducers: {
     setUsers(state, action: PayloadAction<User[]>) {
-      state.currentUsers = action.payload;
+      state.users = action.payload;
     },
-    checkUser(state, action: PayloadAction<{ id: number }>) {
-      const index = state.currentUsers.findIndex(
-        ({ id }) => id === action.payload.id,
-      );
+    checkUser(state, action: PayloadAction<Pick<User, 'id'>>) {
+      const index = state.users.findIndex(({ id }) => id === action.payload.id);
 
       if (index !== -1) {
-        const current = state.currentUsers[index].checked;
-        state.currentUsers[index].checked = !current;
+        const current = state.users[index].checked;
+        state.users[index].checked = !current;
       }
     },
+    selectUser(state, action: PayloadAction<User>) {
+      state.selectedUser = action.payload;
+    },
     resetUsers(state) {
-      state.currentUsers = state.users;
+      state.users = state.initialUsers;
     },
   },
   extraReducers: (builder) => {
@@ -45,8 +48,8 @@ const usersSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(getUserList.fulfilled, (state, action) => {
+      state.initialUsers = action.payload;
       state.users = action.payload;
-      state.currentUsers = action.payload;
       state.isLoading = false;
     });
     builder.addCase(getUserList.rejected, (state, action) => {
@@ -58,6 +61,6 @@ const usersSlice = createSlice({
 
 const { actions, reducer } = usersSlice;
 
-export const { checkUser, setUsers, resetUsers } = actions;
+export const { checkUser, selectUser, setUsers, resetUsers } = actions;
 
 export default reducer;
