@@ -34,9 +34,6 @@ const usersSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
-    setUsers(state, action: PayloadAction<User[]>) {
-      state.users = action.payload;
-    },
     checkUser(state, action: PayloadAction<Pick<User, 'id'>>) {
       const index = state.users.findIndex(({ id }) => id === action.payload.id);
 
@@ -97,7 +94,6 @@ const usersSlice = createSlice({
 
 const { actions, reducer } = usersSlice;
 
-export const { checkUser, selectUser, setUsers, orderUsers, resetUsers } =
-  actions;
+export const { checkUser, selectUser, orderUsers, resetUsers } = actions;
 
 export default reducer;
