@@ -22,20 +22,20 @@ interface SelectboxProps {
 
 const Selectbox = ({ handleSortUsers }: SelectboxProps) => {
   const [option, setOption] = useState(options[0]);
-  const [isOpen, toggleSelect] = useToggle();
+  const [isOpen, toggleSelectbox] = useToggle();
 
   const handleClickOption = (e: React.MouseEvent<HTMLLIElement>) => {
-    const { id, innerText } = e.target as HTMLElement;
+    const { id, innerText } = e.currentTarget as HTMLElement;
     const order = id as Order;
 
     setOption({ order, name: innerText });
-    toggleSelect();
+    toggleSelectbox();
     handleSortUsers(order);
   };
 
   return (
     <>
-      <Select onClick={toggleSelect}>
+      <Select onClick={toggleSelectbox}>
         <span>{option.name}</span>
         <Bracket />
       </Select>
@@ -51,7 +51,7 @@ const Selectbox = ({ handleSortUsers }: SelectboxProps) => {
           </OptionItem>
         ))}
       </OptionList>
-      <Backdrop onClick={isOpen ? toggleSelect : undefined} />
+      <Backdrop onClick={isOpen ? toggleSelectbox : undefined} />
     </>
   );
 };
