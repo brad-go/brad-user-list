@@ -12,6 +12,13 @@ const commonConfig = {
     },
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
   },
+  output: {
+    filename: '[name].js',
+    path: path.resolve(__dirname, './dist'),
+    publicPath: '/',
+    assetModuleFilename: 'assets/[hash][ext]',
+    clean: true,
+  },
   module: {
     rules: [
       {
@@ -30,8 +37,12 @@ const commonConfig = {
         exclude: /node_modules/,
       },
       {
-        test: /\.(png|jpe?g|gif|woff|woff2|eot|ttf|otf)$/,
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: 'file-loader',
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/,
+        type: 'asset/resource',
       },
       {
         test: /\.svg$/,
@@ -62,21 +73,11 @@ const developmentConfig = {
     liveReload: true,
     historyApiFallback: true,
   },
-  output: {
-    filename: '[name].js',
-    publicPath: '/',
-  },
 };
 
 const productionConfig = {
   mode: 'production',
-  devtool: 'none',
-  output: {
-    filenmae: '[name].js',
-    path: path.resolve(__dirname, './dist'),
-    publicPath: '/',
-    clean: true,
-  },
+  devtool: 'source-map',
 };
 
 module.exports = (env, args) => {
