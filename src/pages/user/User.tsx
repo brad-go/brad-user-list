@@ -1,13 +1,14 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 
+import { INITIAL_USER } from '@/constants/users';
 import { List, Profile } from '@/components';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import { selectUser } from '@/store/usersSlice';
 
 const User = () => {
   const dispatch = useAppDispatch();
-  const { checkedUsers } = useAppSelector((state) => state);
+  const { checkedUsers, selectedUser } = useAppSelector((state) => state);
 
   const handleClickUser = useCallback(
     (e: React.MouseEvent) => {
@@ -26,7 +27,7 @@ const User = () => {
         isCheckedUsers
         onUserClick={handleClickUser}
       />
-      <Profile />
+      <Profile user={selectedUser || INITIAL_USER} />
     </Container>
   );
 };
@@ -38,9 +39,6 @@ const Container = styled.div`
   height: 425px;
 
   @media ${({ theme }) => theme.breakPoints.mobile} {
-    /* flex-direction: column;
-    justify-content: space-between;
-    gap: 0; */
     position: relative;
     display: block;
     width: 100%;

@@ -7,8 +7,17 @@ export default {
   component: Profile,
 } as ComponentMeta<typeof Profile>;
 
+const USER = {
+  id: 1,
+  name: 'Pororo',
+  date: '1984-02-23',
+  comment: 'I like to play.',
+  image: '1.png',
+  checked: true,
+};
+
 const Template: ComponentStory<typeof Profile> = ({ ...args }) => {
-  return <Profile {...args} />;
+  return <Profile {...args} user={USER} />;
 };
 
 export const Default = Template.bind({});

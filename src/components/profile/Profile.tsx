@@ -1,7 +1,7 @@
+import type { User } from '@/types';
+
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-
-import { useAppSelector } from '@/hooks';
 
 const profileImageColor: { [key: string]: string } = {
   1: '#C1BAF2',
@@ -21,43 +21,43 @@ const profileImageColor: { [key: string]: string } = {
 };
 
 interface ProfileProps {
+  user: User;
   fullWidth?: boolean;
 }
 
-const Profile = ({ fullWidth }: ProfileProps) => {
-  const selectedUser = useAppSelector((state) => state.selectedUser);
+const Profile = ({ user, fullWidth }: ProfileProps) => {
   const [profileImage, setProfileImage] = useState('');
 
   useEffect(() => {
     const getProfileImage = async () => {
       const image = await import(
-        `@/assets/images/${selectedUser?.image || 'default.png'}`
+        `@/assets/images/${user.image || 'default.png'}`
       );
       setProfileImage(image.default);
     };
 
     getProfileImage();
-  }, [selectedUser]);
+  }, [user]);
 
   return (
     <Container fullWidth={fullWidth}>
       <ProfileBackground />
       <ProfileInfo>
-        <ProfileImage imageNumber={selectedUser?.image.slice(0, 1)}>
-          <img src={profileImage} alt={selectedUser?.name} />
+        <ProfileImage imageNumber={user.image.slice(0, 1)}>
+          <img src={profileImage} alt={user.name} />
         </ProfileImage>
         <ProfileContent>
           <ProfileContentItem>
             <span>이름</span>
-            <span>{selectedUser?.name}</span>
+            <span>{user.name}</span>
           </ProfileContentItem>
           <ProfileContentItem>
             <span>생년월일</span>
-            <span>{selectedUser?.date.replaceAll('-', '.')}</span>
+            <span>{user.date.replaceAll('-', '.')}</span>
           </ProfileContentItem>
           <ProfileContentItem>
             <span>한마디</span>
-            <p>{selectedUser?.comment}</p>
+            <p>{user.comment}</p>
           </ProfileContentItem>
         </ProfileContent>
       </ProfileInfo>
@@ -65,7 +65,7 @@ const Profile = ({ fullWidth }: ProfileProps) => {
   );
 };
 
-const Container = styled.div<ProfileProps>`
+const Container = styled.div<Pick<ProfileProps, 'fullWidth'>>`
   position: relative;
   display: flex;
   justify-content: center;
