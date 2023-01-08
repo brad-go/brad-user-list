@@ -53,7 +53,7 @@ const List = ({
     <Container withButton={withButton}>
       <ListHeader withProfile={withProfile}>
         <Selectbox isCheckedUsers={isCheckedUsers} />
-        <ListItemHeader withCheckbox={withCheckbox}>
+        <ListItemHeader withCheckbox={withCheckbox} withProfile={withProfile}>
           <h4>이름</h4>
           <h4>생년월일</h4>
         </ListItemHeader>
@@ -107,6 +107,7 @@ const ListHeader = styled.div<Pick<ListProps, 'withProfile'>>`
   position: relative;
   width: 100%;
   height: 93px;
+  border-radius: 3px 3px 0 0;
   background-color: ${({ theme }) => theme.colors.lavender_50};
   line-height: 1.267;
 
@@ -117,7 +118,9 @@ const ListHeader = styled.div<Pick<ListProps, 'withProfile'>>`
   }
 `;
 
-const ListItemHeader = styled.div<Pick<ListProps, 'withCheckbox'>>`
+const ListItemHeader = styled.div<
+  Pick<ListProps, 'withCheckbox' | 'withProfile'>
+>`
   display: grid;
   grid-template-columns: ${({ withCheckbox }) =>
     withCheckbox ? '90px 1fr' : '110px 1fr'};
@@ -137,6 +140,11 @@ const ListItemHeader = styled.div<Pick<ListProps, 'withCheckbox'>>`
     grid-template-columns: 2fr 3.048fr;
     height: 100%;
     padding-top: 0;
+
+    h4 {
+      color: ${({ theme, withProfile }) =>
+        withProfile ? theme.colors.white : theme.colors.black};
+    }
   }
 `;
 
@@ -146,8 +154,10 @@ const ListBody = styled.ul<Pick<ListProps, 'withButton'>>`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: ${({ withButton }) => (withButton ? '312px ' : '397px')};
+  height: ${({ withButton }) =>
+    withButton ? 'calc(100% - 178px)' : 'calc(100% - 93px)'};
   margin: 0;
+  border-radius: 0 0 3px 3px;
   background-color: ${({ theme }) => theme.colors.white};
   overflow-x: hidden;
   overflow-y: auto;
