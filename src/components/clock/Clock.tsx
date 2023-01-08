@@ -19,7 +19,7 @@ const Clock = ({ interval = 1000, includeSecond = false }: ClockProps) => {
 
   return (
     <Time>
-      {time.getHours()}:{time.getMinutes()}
+      {time.getHours()}:{String(time.getMinutes()).padStart(2, '0')}
       {includeSecond && `:${String(time.getSeconds()).padStart(2, '0')}`}
     </Time>
   );
