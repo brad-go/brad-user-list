@@ -3,22 +3,7 @@ import type { User } from '@/types';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-const profileImageColor: { [key: string]: string } = {
-  1: '#C1BAF2',
-  2: '#E7D3D0',
-  3: '#F0A8C2',
-  4: '#F0A8C2',
-  5: '#EEB692',
-  6: '#7EEDD9',
-  7: '#C1BAF2',
-  8: '#7EEDD9',
-  9: '#E7D3D0',
-  10: '#E4D3D7',
-  11: '#E4EFA5',
-  12: '#E4EFA5',
-  13: '#E4D3D7',
-  14: '#F1B1E7',
-};
+import { profileImageColor } from '@/constants/profile';
 
 interface ProfileProps {
   user: User;
