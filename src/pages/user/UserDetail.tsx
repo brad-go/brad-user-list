@@ -1,11 +1,18 @@
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
 
+import { INITIAL_USER } from '@/constants/users';
 import { Profile } from '@/components';
+import { useAppSelector } from '@/hooks';
 
 const UserDetail = () => {
+  const { userId } = useParams();
+  const users = useAppSelector((state) => state.initialUsers);
+  const user = users.find(({ id }) => id === Number(userId));
+
   return (
     <Container>
-      <Profile fullWidth />;
+      <Profile user={user || INITIAL_USER} fullWidth />;
     </Container>
   );
 };
