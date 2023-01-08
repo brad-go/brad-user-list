@@ -1,6 +1,7 @@
 import type { User } from '@/types';
 
 import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { profileImageColor } from '@/constants/profile';
@@ -11,7 +12,18 @@ interface ProfileProps {
 }
 
 const Profile = ({ user, fullWidth }: ProfileProps) => {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
   const [profileImage, setProfileImage] = useState('');
+
+  const handleClickProfile = () => {
+    if (!user.id) {
+      return;
+    }
+
+    const route = pathname === '/user' ? `/user/${user.id}` : '/user';
+    navigate(route);
+  };
 
   useEffect(() => {
     const getProfileImage = async () => {
@@ -28,7 +40,10 @@ const Profile = ({ user, fullWidth }: ProfileProps) => {
     <Container fullWidth={fullWidth}>
       <ProfileBackground />
       <ProfileInfo>
-        <ProfileImage imageNumber={user.image.slice(0, 1)}>
+        <ProfileImage
+          imageNumber={user.image.slice(0, 1)}
+          onClick={handleClickProfile}
+        >
           <img src={profileImage} alt={user.name} />
         </ProfileImage>
         <ProfileContent>
@@ -94,6 +109,10 @@ const ProfileImage = styled.div<{ imageNumber?: string }>`
     width: 100%;
     height: 100%;
     border-radius: 50%;
+  }
+
+  &:hover {
+    cursor: pointer;
   }
 
   @media ${({ theme }) => theme.breakPoints.mobile} {
