@@ -5,15 +5,19 @@ import { INITIAL_USER } from '@/constants/users';
 import { Profile } from '@/components';
 import { useAppSelector } from '@/hooks';
 
+import ErrorBoundary from '../ErrorBoundary';
+
 const UserDetail = () => {
   const { userId } = useParams();
   const users = useAppSelector((state) => state.initialUsers);
   const user = users.find(({ id }) => id === Number(userId));
 
-  return (
+  return user ? (
     <Container>
       <Profile user={user || INITIAL_USER} fullWidth />;
     </Container>
+  ) : (
+    <ErrorBoundary userError />
   );
 };
 
