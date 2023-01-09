@@ -2,9 +2,7 @@
   "root": true,
   "env": {
     "browser": true,
-    "es2021": true,
-    "node": true,
-    "jest": true
+    "es2021": true
   },
   "settings": {
     "react": {
@@ -49,24 +47,15 @@
           "type",
           "builtin",
           "external",
-          "internal",
+          ["internal", "unknown"],
           ["parent", "sibling", "index"]
         ],
-        "alphabetize": {
-          "order": "asc",
-          "caseInsensitive": true
-        },
-        "pathGroups": [
-          {
-            "pattern": "@/**/**",
-            "group": "parent",
-            "position": "before"
-          }
-        ],
-        "newlines-between": "always"
+        "newlines-between": "always",
+        "pathGroupsExcludedImportTypes": ["type"]
       }
     ],
     "import/prefer-default-export": "off",
+    "no-param-reassign": ["error", { "props": false }],
     "react/function-component-definition": [
       "error",
       {
@@ -81,6 +70,7 @@
     ],
     "react/jsx-props-no-spreading": "off",
     "react/react-in-jsx-scope": "off",
+    "react/require-default-props": "off",
     "@typescript-eslint/consistent-type-imports": [
       "error",
       {
@@ -90,24 +80,6 @@
     "@typescript-eslint/no-use-before-define": "off"
   },
   "overrides": [
-    {
-      "files": [
-        "**/__tests__/**/*.[jt]s?(x)",
-        "**/?(*.)+(spec|test).[jt]s?(x)"
-      ],
-      "env": {
-        "jest/globals": true
-      },
-      "plugins": ["jest", "jest-dom", "testing-library"],
-      "extends": [
-        "plugin:jest/recommended",
-        "plugin:jest-dom/recommended",
-        "plugin:testing-library/react"
-      ],
-      "rules": {
-        "no-underscore-dangle": "off"
-      }
-    },
     {
       "files": ["*.stories.tsx"],
       "extends": ["plugin:storybook/recommended"],

@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { ThemeProvider } from 'styled-components';
+import { Provider } from 'react-redux';
 
-import GlobalStyle from '@/styles/globalStyle';
-import { theme } from '@/styles/theme';
+import store from '@/store';
 
 import App from './App';
 
@@ -13,9 +12,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
+    <Provider store={store}>
       <App />
-    </ThemeProvider>
+    </Provider>
   </React.StrictMode>,
 );

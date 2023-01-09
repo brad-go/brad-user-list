@@ -1,22 +1,47 @@
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
 
+import SUITVariable from '@/assets/fonts/SUIT-Variable.ttf';
+
 const GlobalStyle = createGlobalStyle`
   ${normalize}
 
   @font-face {
-  font-family: 'SUIT Variable';
-  src: url('../assets/fonts/SUIT-Variable.ttf') format('truetype');
-}
+    font-family: 'SUIT Variable';
+    src: url(${SUITVariable}) format('truetype');
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'SUIT Variable';
+    src: url(${SUITVariable}) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'SUIT Variable';
+    src: url(${SUITVariable}) format('truetype');
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'SUIT Variable';
+    src: url(${SUITVariable}) format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
 
   *, *::before, *::after {
     box-sizing: border-box;
-    font-family: SUIT Variable, -apple-system, 'Segoe UI', Roboto, 'Open Sans', sans-serif;
+    font-family: 'SUIT Variable', -apple-system, sans-serif;
     color: ${({ theme }) => theme.colors.black};
   }
 
   html, body {
-    font-family: SUIT Variable, -apple-system, 'Segoe UI', Roboto, 'Open Sans', sans-serif;
+    font-family: 'SUIT Variable', -apple-system, sans-serif;
     color: ${({ theme }) => theme.colors.black};
   }
 
