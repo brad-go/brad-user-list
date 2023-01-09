@@ -18,7 +18,6 @@
 - 제작기간: 2023.01.04 ~ 2023.01.09
 - 저장소: https://github.com/brad-go/nara-space-frontend-assignment
 
-[⬆️ Back to top](#목차)
 <br />
 
 ## :books: 2. 사용된 기술 스택
@@ -29,7 +28,6 @@
 - **리덕스(redux toolkit, react-redux)를 사용해서 상태를 관리**했습니다.
 - **스토리북**을 통해 개별 UI 개발과 **시각화 테스트**를 진행했습니다.
 
-[⬆️ Back to top](#목차)
 <br />
 
 ## 🪄 3. 프로젝트 실행 방법
