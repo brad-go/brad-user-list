@@ -1,7 +1,8 @@
 import type { User } from '@/types';
 
-import styled from 'styled-components';
 import React, { useEffect, useRef, useCallback } from 'react';
+import styled from 'styled-components';
+import { shallowEqual } from 'react-redux';
 
 import { Selectbox } from '@/components';
 import { useAppSelector } from '@/hooks';
@@ -27,7 +28,10 @@ const List = ({
   onUserClick,
   onButtonClick,
 }: ListProps) => {
-  const { checkedUsers, selectedUser } = useAppSelector((state) => state);
+  const { checkedUsers, selectedUser } = useAppSelector(
+    (state) => state,
+    shallowEqual,
+  );
   const listRef = useRef<HTMLUListElement>(null);
 
   const scrollToElement = useCallback(() => {

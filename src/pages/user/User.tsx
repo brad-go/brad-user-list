@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { shallowEqual } from 'react-redux';
 import styled from 'styled-components';
 
 import { INITIAL_USER } from '@/constants/users';
@@ -8,7 +9,10 @@ import { selectUser } from '@/store/usersSlice';
 
 const User = () => {
   const dispatch = useAppDispatch();
-  const { checkedUsers, selectedUser } = useAppSelector((state) => state);
+  const { checkedUsers, selectedUser } = useAppSelector(
+    (state) => state,
+    shallowEqual,
+  );
 
   const handleClickUser = useCallback(
     (e: React.MouseEvent) => {

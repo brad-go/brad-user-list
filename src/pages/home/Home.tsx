@@ -1,5 +1,6 @@
-import styled from 'styled-components';
 import React, { useCallback } from 'react';
+import { shallowEqual } from 'react-redux';
+import styled from 'styled-components';
 
 import Arrow from '@/assets/svgs/arrow.svg';
 import { List } from '@/components';
@@ -9,7 +10,10 @@ import { checkUser, selectUser } from '@/store/usersSlice';
 
 const Home = () => {
   const dispatch = useAppDispatch();
-  const { users, checkedUsers } = useAppSelector((state) => state);
+  const { users, checkedUsers } = useAppSelector(
+    (state) => state,
+    shallowEqual,
+  );
 
   const handleClickUser = useCallback(
     (e: React.MouseEvent) => {

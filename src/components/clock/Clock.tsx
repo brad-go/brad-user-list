@@ -1,12 +1,11 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 interface ClockProps {
   interval?: number;
-  includeSecond?: boolean;
 }
 
-const Clock = ({ interval = 1000, includeSecond = false }: ClockProps) => {
+const Clock = ({ interval = 1000 }: ClockProps) => {
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
@@ -20,7 +19,6 @@ const Clock = ({ interval = 1000, includeSecond = false }: ClockProps) => {
   return (
     <Time>
       {time.getHours()}:{String(time.getMinutes()).padStart(2, '0')}
-      {includeSecond && `:${String(time.getSeconds()).padStart(2, '0')}`}
     </Time>
   );
 };
@@ -31,4 +29,4 @@ const Time = styled.p`
   color: ${({ theme }) => theme.colors.white};
 `;
 
-export default Clock;
+export default React.memo(Clock);
