@@ -5,16 +5,19 @@ import {
 } from 'react-router-dom';
 
 import { Home } from '@/pages/home';
+import ErrorBoundary from '@/pages/ErrorBoundary';
 import { User, UserDetail } from '@/pages/user';
 
 import { Layout } from './components/layout';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route element={<Layout />}>
+    <Route element={<Layout />} errorElement={<ErrorBoundary />}>
       <Route path="/" element={<Home />} />
-      <Route path="/user" element={<User />} />
-      <Route path="/user/:id" element={<UserDetail />} />
+      <Route errorElement={<ErrorBoundary userError />}>
+        <Route path="/user" element={<User />} />
+        <Route path="/user/:userId" element={<UserDetail />} />
+      </Route>
     </Route>,
   ),
 );

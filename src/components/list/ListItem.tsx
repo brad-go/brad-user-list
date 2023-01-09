@@ -1,3 +1,4 @@
+import React from 'react';
 import styled, { css } from 'styled-components';
 
 import { Checkbox } from '@/components';
@@ -90,4 +91,4 @@ const CheckboxContainer = styled.div`
   }
 `;
 
-export default ListItem;
+export default React.memo(ListItem);

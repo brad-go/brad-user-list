@@ -1,5 +1,34 @@
+import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
+
+import { INITIAL_USER } from '@/constants/users';
+import { Profile } from '@/components';
+import { useAppSelector } from '@/hooks';
+
+import ErrorBoundary from '../ErrorBoundary';
+
 const UserDetail = () => {
-  return <div>유저 상세 페이지</div>;
+  const { userId } = useParams();
+  const users = useAppSelector((state) => state.initialUsers);
+  const user = users.find(({ id }) => id === Number(userId));
+
+  return user ? (
+    <Container>
+      <Profile user={user || INITIAL_USER} fullWidth />;
+    </Container>
+  ) : (
+    <ErrorBoundary userError />
+  );
 };
+
+const Container = styled.div`
+  width: 622px;
+
+  @media ${({ theme }) => theme.breakPoints.mobile} {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+  }
+`;
 
 export default UserDetail;

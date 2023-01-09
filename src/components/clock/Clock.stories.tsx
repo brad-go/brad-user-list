@@ -19,8 +19,3 @@ const Template: ComponentStory<typeof Clock> = ({ ...args }) => {
 };
 
 export const Default = Template.bind({});
-
-export const IncludeSecond = Template.bind({});
-IncludeSecond.args = {
-  includeSecond: true,
-};
