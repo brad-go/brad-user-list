@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 
-import { INITIAL_USER } from '@/constants/users';
 import { Profile } from '@/components';
 import { useAppSelector } from '@/hooks';
 
@@ -14,7 +13,7 @@ const UserDetail = () => {
 
   return user ? (
     <Container>
-      <Profile user={user || INITIAL_USER} fullWidth />;
+      <Profile user={user} fullWidth />;
     </Container>
   ) : (
     <ErrorBoundary userError />
