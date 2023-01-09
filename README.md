@@ -10,6 +10,8 @@
 4. [구현한 기능](#gear-4-구현한-기능)
 5. [디렉토리 구조](#open_file_folder-5-디렉토리-구조)
 
+<br />
+
 ## :speaking_head: 1. 프로젝트 소개
 
 > 나라 스페이스 테크놀로지 프론트엔드 개발자 과제를 진행합니다.
@@ -17,6 +19,8 @@
 - 개인 프로젝트
 - 제작기간: 2023.01.04 ~ 2023.01.09
 - 저장소: https://github.com/brad-go/nara-space-frontend-assignment
+
+<br />
 
 [⬆️ Back to top](#목차)
 <br />
@@ -28,6 +32,8 @@
 - **CRA(Create React App)없이** 웹팩과 바벨 등을 설정해서 프로젝트를 구현했습니다.
 - **리덕스(redux toolkit, react-redux)를 사용해서 상태를 관리**했습니다.
 - **스토리북**을 통해 개별 UI 개발과 **시각화 테스트**를 진행했습니다.
+
+<br />
 
 [⬆️ Back to top](#목차)
 <br />
@@ -57,6 +63,8 @@ REACT_APP_API_URL=http://localhost:3010
 ```bash
 yarn start
 ```
+
+<br />
 
 [⬆️ Back to top](#목차)
 <br />
