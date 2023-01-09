@@ -10,6 +10,8 @@
 4. [구현한 기능](#gear-4-구현한-기능)
 5. [디렉토리 구조](#open_file_folder-5-디렉토리-구조)
 
+<br />
+
 ## :speaking_head: 1. 프로젝트 소개
 
 > 나라 스페이스 테크놀로지 프론트엔드 개발자 과제를 진행합니다.
@@ -20,6 +22,9 @@
 
 <br />
 
+[⬆️ Back to top](#목차)
+<br />
+
 ## :books: 2. 사용된 기술 스택
 
 ![](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![](https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=white) ![](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white) ![](https://img.shields.io/badge/Webpack-8DD6F9?style=for-the-badge&logo=Webpack&logoColor=white) ![](https://img.shields.io/badge/Babel-F9DC3E?style=for-the-badge&logo=babel&logoColor=white) ![](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white) ![](https://img.shields.io/badge/Storybook-FF4785?style=for-the-badge&logo=Storybook&logoColor=white) ![](https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=ESLint&logoColor=white) ![](https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=Prettier&logoColor=white)
@@ -28,6 +33,9 @@
 - **리덕스(redux toolkit, react-redux)를 사용해서 상태를 관리**했습니다.
 - **스토리북**을 통해 개별 UI 개발과 **시각화 테스트**를 진행했습니다.
 
+<br />
+
+[⬆️ Back to top](#목차)
 <br />
 
 ## 🪄 3. 프로젝트 실행 방법
@@ -55,6 +63,8 @@ REACT_APP_API_URL=http://localhost:3010
 ```bash
 yarn start
 ```
+
+<br />
 
 [⬆️ Back to top](#목차)
 <br />
