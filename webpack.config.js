@@ -1,6 +1,7 @@
 const path = require('path');
 const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 const commonConfig = {
@@ -59,6 +60,15 @@ const commonConfig = {
   },
   plugins: [
     new HtmlWebpackPlugin({ template: 'public/index.html' }),
+    new ImageMinimizerPlugin({
+      exclude: /node_modules/,
+      minimizer: {
+        implementation: ImageMinimizerPlugin.imageminMinify,
+        options: {
+          plugins: [['optipng', { optimizationLevel: 5 }]],
+        },
+      },
+    }),
     new Dotenv({
       systemvars: true,
     }),
