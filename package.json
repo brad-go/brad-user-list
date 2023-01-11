@@ -2,7 +2,10 @@
   "name": "nara-space-frontend-assignment",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/brad-go/nara-space-frontend-assignment.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brad-go/nara-space-frontend-assignment.git"
+  },
   "license": "MIT",
   "scripts": {
     "start": "concurrently \"yarn dev\" \"yarn json\"",
@@ -14,7 +17,8 @@
     "prepare": "husky install",
     "json": "json-server --watch server/db.json --port 9000",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "chromatic": "npx chromatic --project-token=c8ae61997835"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
@@ -51,6 +55,7 @@
     "@typescript-eslint/parser": "^5.48.0",
     "babel-loader": "^9.1.0",
     "babel-plugin-styled-components": "^2.0.7",
+    "chromatic": "^6.14.0",
     "concurrently": "^7.6.0",
     "dotenv-webpack": "^dev",
     "eslint": "^8.31.0",
@@ -92,5 +97,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/brad-go/nara-space-frontend-assignment/issues"
+  },
+  "readme": "ERROR: No README data found!",
+  "homepage": "https://github.com/brad-go/nara-space-frontend-assignment#readme",
+  "_id": "nara-space-frontend-assignment@1.0.0"
 }
