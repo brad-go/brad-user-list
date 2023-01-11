@@ -2,6 +2,14 @@
 
 <br />
 
+## :rocket: Demo
+
+#### 🔗 **Demo site**: **https://brad-user-list.netlify.app/**
+
+#### 🔗 **Storybook**: **https://63beaf11c17ca17a6d1de434-fautjhnhat.chromatic.com/**
+
+<br />
+
 ## 목차
 
 1. [프로젝트 소개](#speaking_head-1-프로젝트-소개)
