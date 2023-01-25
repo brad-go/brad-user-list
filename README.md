@@ -1,4 +1,4 @@
-# [나라 스페이스 테크놀로지] 프론트엔드 개발자 과제
+# 나만의 유저 목록
 
 <br />
 
@@ -22,11 +22,11 @@
 
 ## :speaking_head: 1. 프로젝트 소개
 
-> 나라 스페이스 테크놀로지 프론트엔드 개발자 과제를 진행합니다.
+> 원하는 유저를 선택하고, 유저들과 선택된 유저를 보여주는 유저 목록을 구현합니다.
 
 - 개인 프로젝트
 - 제작기간: 2023.01.04 ~ 2023.01.09
-- 저장소: https://github.com/brad-go/nara-space-frontend-assignment
+- 저장소: https://github.com/brad-go/brad-user-list
 
 <br />
 
@@ -53,7 +53,7 @@
 1. git clone하여 프로젝트를 내려받습니다.
 
 ```bash
-git clone https://github.com/brad-go/nara-space-frontend-assignment.git
+git clone https://github.com/brad-go/brad-user-list.git
 ```
 
 2. 아래 커맨드로 패키지를 설치합니다.
@@ -344,7 +344,7 @@ checkUser(state, action: PayloadAction<Pick<User, 'id'>>) {
 },
 ```
 
-이를 통해 각각의 정렬이 가능하고, 간결한 코드로 두 개의 유저 목록을 화면에 그려낼 수 있었습니다. [전체 코드 보러가기](https://github.com/brad-go/nara-space-frontend-assignment/blob/acaf01b5cfde6ddb9dda028e5a987cd9b157f0c0/src/store/usersSlice.ts#L24)
+이를 통해 각각의 정렬이 가능하고, 간결한 코드로 두 개의 유저 목록을 화면에 그려낼 수 있었습니다. [전체 코드 보러가기](https://github.com/brad-go/brad-user-list/blob/acaf01b5cfde6ddb9dda028e5a987cd9b157f0c0/src/store/usersSlice.ts#L24)
 
 [⬆️ Back to top](#목차)
 <br />

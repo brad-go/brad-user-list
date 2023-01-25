@@ -1,10 +1,10 @@
 {
-  "name": "nara-space-frontend-assignment",
+  "name": "brad-user-list",
   "version": "1.0.0",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/brad-go/nara-space-frontend-assignment.git"
+    "url": "git+https://github.com/brad-go/brad-user-list.git"
   },
   "license": "MIT",
   "scripts": {
@@ -99,9 +99,7 @@
     ]
   },
   "bugs": {
-    "url": "https://github.com/brad-go/nara-space-frontend-assignment/issues"
+    "url": "https://github.com/brad-go/brad-user-list/issues"
   },
-  "readme": "ERROR: No README data found!",
-  "homepage": "https://github.com/brad-go/nara-space-frontend-assignment#readme",
-  "_id": "nara-space-frontend-assignment@1.0.0"
+  "homepage": "https://github.com/brad-go/brad-user-list#readme"
 }
